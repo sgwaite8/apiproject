@@ -1,0 +1,23 @@
+{
+  "name": "apiproject",
+  "version": "1.0.0",
+  "description": "Seomthing here in the reamde file",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgwaite8/apiproject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sgwaite8/apiproject/issues"
+  },
+  "homepage": "https://github.com/sgwaite8/apiproject#readme",
+  "dependencies": {
+    "open": "0.0.5",
+    "prompt": "^1.0.0"
+  }
+}
