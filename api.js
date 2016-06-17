@@ -7,8 +7,15 @@ console.log("Welcome to the Movie Info Finder!");
 prompt.start();
 prompt.get(['movieName'], function (err, result) {
   console.log('You picked ' + result.movieName + '!');
-})
 // 3. Make a GET request to the OMDb API for the movie information
+  var request = require('request');
+  request('http://www.omdbapi.com/?t='+ encodeURIComponent(result.movieName) + '&y=&plot=short&r=json', function (error, response, body){
+    if (!error && response.statusCode == 200) {
+      var bodyObject = JSON.parse(body);
+      console.log(bodyObject);
+    }
+  })
+})
 
 // 4. More specifically return movie name, release date and plot.
 
