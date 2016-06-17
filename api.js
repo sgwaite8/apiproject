@@ -1,4 +1,5 @@
 var prompt = require('prompt');
+var open = require('open');
 
 // 1. Welcome the user to our application
 console.log("Welcome to the Movie Info Finder!");
