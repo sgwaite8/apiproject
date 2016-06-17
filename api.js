@@ -46,7 +46,7 @@ function confirmSelection(response, callBack){
       callBack = searchMovie();
     }
     else {
-      console.log("Sorry, I didn't understand that.")
+      console.log("Sorry, I didn't understand that. Please type 'Y' or 'N'.")
       repeatConfirm();
     }
   })
