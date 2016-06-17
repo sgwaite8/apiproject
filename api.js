@@ -12,12 +12,21 @@ prompt.get(['movieName'], function (err, result) {
   request('http://www.omdbapi.com/?t='+ encodeURIComponent(result.movieName) + '&y=&plot=short&r=json', function (error, response, body){
     if (!error && response.statusCode == 200) {
       var bodyObject = JSON.parse(body);
+      // console.log(bodyObject);
       var synopsisArray = [bodyObject.Title, bodyObject.Released, bodyObject.Plot];
+
       console.log(synopsisArray);
       console.log("Is this the movie you were looking for?")
     prompt.start();
     prompt.get(['response'], function (err, result) {
-      // console.log();
+      if (result.response === 'Y') {
+        var urlThing = bodyObject.Poster;
+      console.log(urlThing);
+      open(urlThing);
+      }
+      else if(result.response === 'N'){
+        console.log("search again")
+      }
     })
     }
   })
