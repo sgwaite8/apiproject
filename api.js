@@ -1,7 +1,14 @@
 var prompt = require('prompt');
 var open = require('open');
 var bodyObject;
-POOP
+
+function repeatSearch(){
+  searchMovie();
+}
+function repeatConfirm(){
+  confirmSelection(currentMovie);
+}
+
 function searchMovie(){
   console.log("Type a movie title!")
   prompt.start();
@@ -11,8 +18,14 @@ function searchMovie(){
       if (!error && response.statusCode == 200) {
         bodyObject = JSON.parse(body);
         var synopsisArray = [bodyObject.Title, bodyObject.Released, bodyObject.Plot];
-        console.log(synopsisArray);
-        confirmSelection();
+        if (synopsisArray[0] === undefined){
+          console.log("Sorry, no results for that title.")
+          repeatSearch();
+        }
+        else {
+          console.log(synopsisArray);
+          confirmSelection();
+        }
       }
     })
   })
@@ -22,6 +35,7 @@ function confirmSelection(response, callBack){
   console.log("Is this the movie you were looking for?  Y/N")
   prompt.start();
   prompt.get(['response'], function (err, result) {
+    //result.response.toUpperCase();
     if ( result.response === 'Y'){
       var urlThing = bodyObject.Poster;
       console.log("Have a nice day!");
@@ -31,11 +45,15 @@ function confirmSelection(response, callBack){
       console.log("Sorry about that. Let's try again!")
       callBack = searchMovie();
     }
+    else {
+      console.log("Sorry, I didn't understand that.")
+      repeatConfirm();
+    }
   })
 }
 
 console.log("Welcome to the Movie Info Finder!");
-searchMovie();
+var currentMovie = searchMovie();
 
 
 
