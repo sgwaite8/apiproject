@@ -1,7 +1,10 @@
 var prompt = require('prompt');
 var open = require('open');
 var bodyObject;
-POOP
+function repeatSearch() {
+  searchMovie();
+}
+
 function searchMovie(){
   console.log("Type a movie title!")
   prompt.start();
@@ -11,8 +14,13 @@ function searchMovie(){
       if (!error && response.statusCode == 200) {
         bodyObject = JSON.parse(body);
         var synopsisArray = [bodyObject.Title, bodyObject.Released, bodyObject.Plot];
-        console.log(synopsisArray);
-        confirmSelection();
+        if (synopsisArray[0] === undefined){
+          console.log("Sorry, no results for that title.")
+          repeatSearch();
+        } else {
+          console.log(synopsisArray);
+          confirmSelection();
+        }
       }
     })
   })
